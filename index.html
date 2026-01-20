@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIKZ XIT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#070716;
+  font-family:Poppins,sans-serif;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* COMET */
+.comet{position:fixed;inset:0;pointer-events:none;z-index:9999}
+.comet span{
+position:absolute;
+width:2px;
+height:160px;
+background:linear-gradient(transparent,rgba(255,255,255,.9));
+transform:rotate(-35deg);
+animation:fall linear infinite;
+}
+@keyframes fall{
+from{transform:translateX(120vw) translateY(-40vh) rotate(-35deg);opacity:0}
+to{transform:translateX(-120vw) translateY(140vh) rotate(-35deg);opacity:1}
+}
+
+.container{position:relative;z-index:2;padding:22px}
+
+/* HEADER */
+.header{
+position:relative;
+border:3px solid #ff2d8b;
+border-radius:26px;
+padding:22px;
+text-align:center;
+margin-bottom:22px;
+}
+.header .title{
+font-family:'Rubik Wet Paint', cursive;
+color:#ff0055;
+font-size:30px;
+letter-spacing:3px;
+text-shadow:0 0 6px #ff0055,0 0 16px #ff0055,0 0 32px #ff1f7a;
+}
+.header p{
+margin-top:12px;
+font-size:12px;
+letter-spacing:3px;
+color:#ff9abf;
+}
+
+/* HELP */
+.help-btn{
+position:absolute;
+top:10px;
+right:12px;
+width:26px;
+height:26px;
+border-radius:50%;
+background:#fff;
+color:#000;
+font-weight:700;
+font-size:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+}
+
+/* CARD */
+.card{border-radius:26px;margin-bottom:18px;overflow:hidden}
+.card-header{padding:20px;font-size:15px;cursor:pointer}
+
+.card-content{
+max-height:0;
+overflow:hidden;
+padding:0 16px;
+transition:.8s;
+}
+.card.active .card-content{
+max-height:700px;
+padding-bottom:18px;
+}
+
+/* ITEM */
+.item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-radius:18px;
+padding:16px;
+margin-top:12px;
+font-weight:600;
+color:#000;
+}
+.i1{background:linear-gradient(90deg,#ff7ac7,#7acbff)}
+.i2{background:linear-gradient(90deg,#7dffb3,#6aa8ff)}
+.i3{background:linear-gradient(90deg,#7aa7ff,#c07bff)}
+.i4{background:linear-gradient(90deg,#ffe066,#ff9f6e)}
+
+.right{display:flex;gap:10px;align-items:center}
+.price{
+background:rgba(0,0,0,.35);
+color:#fff;
+padding:6px 14px;
+border-radius:14px;
+}
+.order{
+background:#ff006e;
+border:none;
+color:#fff;
+padding:8px 18px;
+border-radius:18px;
+cursor:pointer;
+}
+
+/* LIST COLOR */
+.list-drag{background:#ff7a7a}
+.list-sensi{background:#7a7aff}
+.list-holo{background:#7affd6}
+.list-brutal{background:#ff7f7f}
+
+/* MODAL */
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(6px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:10000;
+}
+.modal.active{display:flex}
+
+.modal-box{
+background:#111;
+padding:20px;
+border-radius:22px;
+width:280px;
+text-align:center;
+}
+
+.pay-btn{
+width:100%;
+margin-top:12px;
+padding:10px;
+border-radius:16px;
+border:none;
+font-weight:600;
+cursor:pointer;
+}
+
+.qris-btn{background:#ff006e;color:#fff}
+.copy-btn{background:#333;color:#fff}
+
+.close{
+margin-top:14px;
+background:#ff006e;
+border:none;
+color:#fff;
+padding:8px 22px;
+border-radius:16px;
+cursor:pointer;
+}
+
+/* FOOTER */
+.footer{
+position:fixed;
+bottom:12px;
+width:100%;
+text-align:center;
+}
+.footer .a{color:#ff2d8b;font-size:14px}
+.footer .b{font-size:11px;opacity:.7}
+</style>
+</head>
+
+<body>
+
+<div class="comet" id="comet"></div>
+
+<div class="container">
+
+<div class="header">
+  <div class="title">@DIKZ XIT</div>
+  <p>WELCOME TO WEBSITE<br>RESMI DIKZ XIT</p>
+  <a href="https://wa.me/628131772942" class="help-btn">?</a>
+</div>
+
+<div class="card list-drag">
+  <div class="card-header" onclick="toggle(this)">◎ LIST DRAG HS VIP</div>
+  <div class="card-content">
+    <div class="item i1"><span>DRAG 80%</span><div class="right"><span class="price">20K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+    <div class="item i2"><span>DRAG 85%</span><div class="right"><span class="price">25K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+    <div class="item i3"><span>DRAG 90%</span><div class="right"><span class="price">30K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+    <div class="item i4"><span>DRAG 100%</span><div class="right"><span class="price">35K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+  </div>
+</div>
+
+<div class="card list-sensi">
+  <div class="card-header" onclick="toggle(this)">◎ LIST INJECTOR SENSIX</div>
+  <div class="card-content">
+    <div class="item i1"><span>VOIX SENSIX</span><div class="right"><span class="price">35K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+    <div class="item i3"><span>ANGLER SENSIX</span><div class="right"><span class="price">45K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+  </div>
+</div>
+
+<div class="card list-holo">
+  <div class="card-header" onclick="toggle(this)">◎ LIST HOLOGRAM</div>
+  <div class="card-content">
+    <div class="item i2"><span>HOLO ALL SENJATA / KARAKTER</span><div class="right"><span class="price">45K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+    <div class="item i3"><span>HOLO 3D ALL CHARACTER</span><div class="right"><span class="price">20K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+  </div>
+</div>
+
+<div class="card list-brutal">
+  <div class="card-header" onclick="toggle(this)">◎ LIST BRUTALY XIT</div>
+  <div class="card-content">
+    <div class="item i4"><span>BODY HS MIUI</span><div class="right"><span class="price">55K</span><button class="order" onclick="openPay(event,this)">ORDER</button></div></div>
+  </div>
+</div>
+
+</div>
+
+<!-- MODAL PAYMENT -->
+<div class="modal" id="payModal">
+  <div class="modal-box">
+    <button class="pay-btn qris-btn" onclick="goWA()">QRIS</button>
+    <div class="pay-btn copy-btn" onclick="copyNum()">Nomor Pembayaran<br>085211539583</div>
+    <button class="close" onclick="closePay()">X</button>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="a">@dikzxitera</div>
+  <div class="b">Terinspirasi Dari Panzy</div>
+</div>
+
+<script>
+const c=document.getElementById("comet");
+for(let i=0;i<80;i++){
+  let s=document.createElement("span");
+  s.style.top=Math.random()*100+"%";
+  s.style.animationDuration=(4+Math.random()*4)+"s";
+  s.style.opacity=Math.random();
+  c.appendChild(s);
+}
+
+let selectedText="";
+
+function toggle(el){
+  el.parentElement.classList.toggle("active");
+}
+
+function openPay(e,btn){
+  e.stopPropagation();
+  const item=btn.closest(".item");
+  const name=item.querySelector("span").innerText;
+  const price=item.querySelector(".price").innerText;
+  selectedText = `${name} (${price})`;
+  document.getElementById("payModal").classList.add("active");
+}
+
+function closePay(){
+  document.getElementById("payModal").classList.remove("active");
+}
+
+/* QRIS → NOMOR MANUAL */
+function goWA(){
+  const msg = encodeURIComponent(
+    `BANG MAU QRISNYA DONG , GW MAU BUY ${selectedText}`
+  );
+  window.location.href = `https://wa.me/628131772942?text=${msg}`;
+}
+
+/* NOMOR PEMBAYARAN (TETAP) */
+function copyNum(){
+  navigator.clipboard.writeText("085211539583");
+}
+</script>
+
+</body>
+  </html>
